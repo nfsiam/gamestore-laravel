@@ -33,5 +33,9 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT'),// your client_id form google console
+        'client_secret' => env('GOOGLE_SECRET'), // your client_secret form google console
+        'redirect' => 'http://localhost:8000/callback'],
 
 ];
