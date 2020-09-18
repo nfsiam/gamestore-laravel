@@ -7,6 +7,7 @@ use App\User;
 use Socialite;
 use Auth; 
 use Exception;
+use Hash;
 
 class SocialAuthGoogleController extends Controller
 {
@@ -28,7 +29,7 @@ class SocialAuthGoogleController extends Controller
                 $user->name = $googleUser->name;
                 $user->email = $googleUser->email;
                 $user->google_id = $googleUser->id;
-                $user->password = md5(rand(1,10000));
+                $user->password = Hash::make(rand(1,10000));
                 $user->type = 'user';
                 //creating username
                 $splitmail = explode('@', $googleUser->email)[0];
@@ -39,7 +40,7 @@ class SocialAuthGoogleController extends Controller
                 $user->save();
                 Auth::loginUsingId($user->id,true);
             }
-            return redirect()->to('/home');
+            return redirect('/home');
         }
         catch(Exception $e){
             return $e;
