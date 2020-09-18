@@ -22,4 +22,6 @@ Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 Route::get('/forum', 'Forum\ForumController@index')->name('forum.index');
-Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('forumDashboard.index');
+Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('forumdashboard.index');
+
+Route::get('/chat/gossiproom', 'Chat\ChatController@gossiproom')->name('chat.gossiproom');

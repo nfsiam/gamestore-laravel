@@ -47,7 +47,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if (auth()->user()->type == 'moderator') {
-            return redirect()->route('forumDashboard.index');
+            return redirect()->route('forumdashboard.index');
         }
         return redirect('/home');
     }
