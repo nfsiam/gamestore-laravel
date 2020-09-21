@@ -49,6 +49,14 @@ class LoginController extends Controller
         if (auth()->user()->type == 'moderator') {
             return redirect()->route('forumdashboard.index');
         }
+        else if(auth()->user()->type=='user')
+        {
+            return redirect()->route('endHome');
+        }
+        else if(auth()->user()->type=='publisher')
+        {
+            return redirect()->route('pubReport');
+        }
         return redirect('/home');
     }
 }

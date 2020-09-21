@@ -18,6 +18,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/enduser/home','EnduserController@enduserHome')->name('endHome');
+Route::get('/enduser/store','EnduserController@enduserStore')->name('endStore');
+Route::get('/enduser/library','EnduserController@enduserLibrary')->name('endLibrary');
+Route::get('/enduser/community','EnduserController@endCommunity')->name('endCommunity');
+Route::get('/enduser/connect','EnduserController@enduserConnect')->name('endConncet');
+Route::get('/enduser/myprofile','EnduserController@enduserMyprofile')->name('endMyprofile');
+Route::get('/enduser/plans','EnduserController@enduserPlans')->name('endPlans');
+
+Route::get('/publisher/report','PublisherController@publisherReport')->name('pubReport');
+Route::get('/publisher/store','PublisherController@publisherStore')->name('pubStore');
+Route::get('/publisher/library','PublisherController@publisherLibrary')->name('pubLibrary');
+Route::get('/publisher/myprofile','PublisherController@publisherMyprofile')->name('pubCommunity');
+Route::get('/publisher/publish','PublisherController@publisherPublish')->name('pubPublish');
+
+
+
+
+
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 
