@@ -38,29 +38,51 @@
             <div class="row">
                 <div class="col-lg-10 col-sm-6">
                     <div class="publish-game">
+                      
                         <form action="" method="POST" enctype="multipart/form-data">
+                          @csrf
                             <table class="table">
                                 <tr>
                                     <th>Game Title</th>
-                                    <td><input type="text" class="form-control"  value="Contra"></td>
+                                    <td><input type="text" class="form-control" name="title"  value="Contra"></td>
+                                    <td>
+                                      @error('title')
+                                        {{ $message }}
+                                      @enderror
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Price $</th>
-                                    <td><input type="number" class="form-control" name="" id="" value="30"></td>
+                                    <td><input type="text" class="form-control" name="price" id="" value="30"></td>
+                                    <td>
+                                      @error('price')
+                                        {{ $message }}
+                                      @enderror
+                                    </td>
                                 </tr>
                                 
                                 <tr>
                                     <th>Release Date</th>
-                                    <td><input type="date" name="" id="" class="form-control"></td>
+                                    <td><input type="date" name="releasedate" id="" class="form-control"></td>
+                                    <td>
+                                      @error('releasedate')
+                                        {{ $message }}
+                                      @enderror
+                                    </td>
                                 </tr>
                                
                                 <tr>
                                     <th>Game Picture</th>
                                     <td>
                                       <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile02" accept="image/*" enctype="multipart/form-data">
+                                        <input type="file" name="gamepicture" class="custom-file-input" id="inputGroupFile02" accept="image/*" enctype="multipart/form-data">
                                         <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                                       </div>
+                                    </td>
+                                    <td>
+                                      @error('gamepicture')
+                                        {{ $message }}
+                                      @enderror
                                     </td>
                                 </tr>
                                 
@@ -68,9 +90,14 @@
                                     <th>Game File</th>
                                     <td>
                                       <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile02" accept="/*" enctype="multipart/form-data">
+                                        <input type="file" name="gamefile" class="custom-file-input" id="inputGroupFile02" accept="/*" enctype="multipart/form-data">
                                         <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                                       </div>
+                                    </td>
+                                    <td>
+                                      @error('gamefile')
+                                        {{ $message }}
+                                      @enderror
                                     </td>
                                 </tr>
 
@@ -120,6 +147,9 @@
 
         </div>
     </div>
+
+  
+
 
 </body>
 

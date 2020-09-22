@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Middleware\Publish;
+use Illuminate\Validation\Rule;
+
 class PublisherController extends Controller
 {
     //
@@ -35,5 +38,19 @@ class PublisherController extends Controller
     public function publisherPublish()
     {
         return view('publisher.publish');
+    }
+
+    public function publisherUpload(Request $request)
+    {
+          
+       
+        //Publish::validate($request);
+       
+        $publish = new Publish();
+        $publish->validate($request);
+
+        //return redirect('pubPublish');
+        //return redirect()->route('pubPublish');
+
     }
 }

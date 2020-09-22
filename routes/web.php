@@ -34,6 +34,7 @@ Route::get('/publisher/library','PublisherController@publisherLibrary')->name('p
 Route::get('/publisher/myprofile','PublisherController@publisherMyprofile')->name('pubCommunity');
 Route::get('/publisher/publish','PublisherController@publisherPublish')->name('pubPublish');
 
+Route::post('/publisher/publish','PublisherController@publisherUpload')->name('pubPublishPost');
 
 
 

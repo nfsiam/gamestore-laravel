@@ -51,12 +51,14 @@ class LoginController extends Controller
         }
         else if(auth()->user()->type=='user')
         {
+            
             return redirect()->route('endHome');
         }
         else if(auth()->user()->type=='publisher')
         {
             return redirect()->route('pubReport');
         }
-        return redirect('/home');
+       
+        return redirect('/');
     }
 }
