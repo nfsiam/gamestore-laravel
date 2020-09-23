@@ -18,7 +18,7 @@
     <div class="prev-chat-row" id="chat-history">
         @foreach($messages as $message)
         <div class="col-md-12 border px-3 py-1 mb-3 msg">
-            <span class="timeSpan">{{$message->stime}}</span>
+            <span class="timeSpan tstamp">{{$message->stime}}</span>
             <span class="usernameSpan">{{$message->sender}} : </span>
             <span class="msgSpan">{{$message->msg}}</span>
         </div>
