@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sba.css') }}" rel="stylesheet">
     @yield('css')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js')}}"></script>
@@ -62,6 +63,19 @@
     </div>
 
     @yield('scripts')
+
+    <script>
+        function convertTimes(){
+            $('.tstamp').each(function(){
+                const offset = moment().utcOffset();
+                console.log(offset);
+                $(this).html(moment.unix(parseInt($(this).html())).format('hh:mm:ss a'));
+            });
+        }
+        $(document).ready(function(){
+            convertTimes();
+        });
+    </script>
     
 </body>
 

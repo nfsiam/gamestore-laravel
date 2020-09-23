@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function(){
 	});
 
     Route::get('/chat', 'Chat\ChatController@index')->name('chat.index');
+    Route::post('/chat/searchnewuser', 'Chat\ChatController@searchnewuser')->name('chat.searchnewuser');
+    Route::post('/chat/searchmessage', 'Chat\ChatController@searchmessage')->name('chat.searchmessage');
+    Route::post('/chat/getallmessages', 'Chat\ChatController@getallmessages')->name('chat.getallmessages');
     Route::get('/chat/gossiproom', 'Chat\ChatController@gossiproom')->name('chat.gossiproom');
     Route::get('/chat/{convid}','Chat\ChatController@conversation')->name('chat.conversation');
 

@@ -16,6 +16,7 @@ module.exports = (server, key) => {
         socket.join(socket.decoded_token.convid);
 
         socket.on('msgEvent', (msgObj) => {
+            console.log('tz', Intl.DateTimeFormat().resolvedOptions().timeZone)
             msgObj['time'] = moment().valueOf();
             msgObj.id = socket.decoded_token.sender;
 
@@ -24,7 +25,8 @@ module.exports = (server, key) => {
                 sender: socket.decoded_token.sender,
                 receiver: socket.decoded_token.receiver,
                 msg: msgObj.msg,
-                attachment: null
+                attachment: null,
+                stime: moment().unix()
             };
 
             conversation.insertMSG(message, (status) => {
