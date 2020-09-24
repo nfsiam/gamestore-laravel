@@ -22,18 +22,26 @@ Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 Route::middleware(['auth'])->group(function(){
+    
+    Route::name('chat.')->group(function () {
+        Route::get('/chat', 'Chat\ChatController@index')->name('index');
+        Route::post('/chat/searchnewuser', 'Chat\ChatController@searchnewuser')->name('searchnewuser');
+        Route::post('/chat/searchmessage', 'Chat\ChatController@searchmessage')->name('searchmessage');
+        Route::post('/chat/getallmessages', 'Chat\ChatController@getallmessages')->name('getallmessages');
+        Route::post('/chat/getallmessages', 'Chat\ChatController@getallmessages')->name('getallmessages');
+        Route::get('/chat/gossiproom', 'Chat\ChatController@gossiproom')->name('gossiproom');
+        Route::get('/chat/{convid}', 'Chat\ChatController@conversation')->name('conversation');
+    });
 
-    Route::get('/forum', 'Forum\ForumController@index')->name('forum.index');
+    Route::name('forum.')->group(function () {
+        Route::get('/forum', 'Forum\ForumController@index')->name('index');
 
-    Route::group(['middleware'=>['mod']], function(){
-        Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('forumdashboard.index');
-	});
+        Route::get('/forum/create-post', 'Forum\PostController@create')->name('createpost');
+        Route::post('/forum/create-post', 'Forum\PostController@store')->name('createpost');
 
-    Route::get('/chat', 'Chat\ChatController@index')->name('chat.index');
-    Route::post('/chat/searchnewuser', 'Chat\ChatController@searchnewuser')->name('chat.searchnewuser');
-    Route::post('/chat/searchmessage', 'Chat\ChatController@searchmessage')->name('chat.searchmessage');
-    Route::post('/chat/getallmessages', 'Chat\ChatController@getallmessages')->name('chat.getallmessages');
-    Route::get('/chat/gossiproom', 'Chat\ChatController@gossiproom')->name('chat.gossiproom');
-    Route::get('/chat/{convid}','Chat\ChatController@conversation')->name('chat.conversation');
+        Route::group(['middleware'=>['mod']], function(){
+            Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');
+        });
+    });
 
 });
