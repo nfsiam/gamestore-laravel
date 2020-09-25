@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\Store;
 use App\Http\Middleware\Library;
 use Illuminate\Support\Facades\DB;
+
 use App\Http\Middleware\ProfileUpdate;
 use Auth;
 use Webpatser\Uuid\Uuid;
@@ -137,6 +138,13 @@ class EnduserController extends Controller
 
     public function enduserGift($id)
     {
+
+        
+        //$result = json_decode($response->getBody(),true);
+
+        //print_r($result);
+
+
         return view('enduser.gift');
     }
     public function enduserGiftPost(Request $request,$id)
@@ -151,23 +159,25 @@ class EnduserController extends Controller
         {
             // guzzel code here ;
 
-            /*
-                $client = new Client();
-                $response = $client->request('POST', 'http://localhost:3000/home', [
-                    'content-type' => 'application/json',
-                    'form_params' => [
-                        'sender' => $sender,
-                        'receiver' => $receiver,
-                        'convid' => "$convid",   
-                    ]
-                ]);
-                $ctoken = json_decode($response->getBody(),true);
+            
+            $client = new Client();
+            $response = $client->request('GET', 'http://localhost:3000/home/'.$request->username, [
+                'content-type' => 'application/json',
+                'form_params' => [
+                    'username' => Auth::user()->username,
+                ]
+            ]);
+            $result = json_decode($response->getBody(),true);
+            
+            if($result[0]['permission']=="allowed")
+            {
+                return "<script>alert('gifted');</script>";
+            }
+            else
+            {
+                return "<script>alert('denied');</script>";
+            }
 
-            */
-
-
-
-            return "<script>alert('gifted');</script>";
         }
         else
         {
