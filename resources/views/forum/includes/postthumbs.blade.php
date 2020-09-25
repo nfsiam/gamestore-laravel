@@ -38,7 +38,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="btn btn-white shadow-none">
-                        @if(isset($myreact))
+                        @if(isset($post['myreact']))
                         <span class="text-danger"><i class="fas fa-heart"></i></span>
                         @else
                         <span class="text-muted"><i class="fas fa-heart"></i></span>

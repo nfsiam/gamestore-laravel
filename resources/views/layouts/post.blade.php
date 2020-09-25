@@ -80,6 +80,35 @@
                 }
             });
         });
+
+        $('.react-post').click(function(){
+            $.ajax({
+                type: 'POST',
+                url: "{{route('forum.reactpost')}}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    postid : "{{$post['id']}}"
+                },
+                success: function (data) {
+                    if('error' in data){
+                        alert(data.error);
+                    }else if('react' in data){
+                        if(data.react == 'cancel'){
+                            //remove icon
+                            $('.react-post').find('.heart').removeClass('text-danger');
+                            $('.react-post').find('.heart').addClass('text-muted');
+                            $('.react-post').find('.react-count').html(parseInt($('.react-post').find('.react-count').html())-1);
+                        }else{
+                            //add icon
+                            $('.react-post').find('.heart').removeClass('text-muted');
+                            $('.react-post').find('.heart').addClass('text-danger');
+                            $('.react-post').find('.react-count').html(parseInt($('.react-post').find('.react-count').html())+1);
+
+                        }
+                    }
+                }
+            });
+        });
     });
 </script>
 <!-- other users scripts end -->

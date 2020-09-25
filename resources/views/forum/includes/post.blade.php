@@ -45,13 +45,13 @@
             <pre class="prettyprint linenums rounded"><code>{{ $post['codes'] }}</code></pre>
         @endisset
         <div class="d-flex justify-content-between align-items-center">
-            <button class="d-flex justify-content-start align-items-center btn btn-white shadow-none">
+            <button class="d-flex justify-content-start align-items-center btn btn-white shadow-none react-post">
                 @if(isset($myreact))
-                <span class="text-danger h4"><i class="fas fa-heart"></i></span>
+                <span class="text-danger h4 heart"><i class="fas fa-heart"></i></span>
                 @else
-                <span class="text-muted h4"><i class="fas fa-heart"></i></span>
+                <span class="text-muted h4 heart"><i class="fas fa-heart"></i></span>
                 @endif
-                <span class="text-muted h6 ml-2"> {{$post['reacts']}}</span>
+                <span class="text-muted h6 ml-2 react-count"> {{$post['reacts']}}</span>
             </button>
             <div>
                 @include('forum.includes.postdropaction')
