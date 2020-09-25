@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function(){
 
         Route::post('/forum/react-post', 'Forum\Post\ReactPostController@reactpost')->name('reactpost');
 
+        Route::post('/forum/create-comment', 'Forum\Comment\CreateCommentController@store')->name('createcomment');
+
+
         Route::group(['middleware'=>['mod']], function(){
             Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');
             Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\PostController@showpending')->name('dashboard.showpending');

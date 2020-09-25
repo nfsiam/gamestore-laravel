@@ -14,6 +14,7 @@ use App\User;
 use App\Postreport;
 use App\Postreact;
 use App\Postdelreq;
+use App\Forumcomment;
 
 class ShowPostController extends Controller
 {
@@ -31,6 +32,7 @@ class ShowPostController extends Controller
         $post['ptime'] = $res->ptime;
         $post['id'] = $res->id;
         $post['type'] = $res->posttype;
+        $post['comment'] = $res->comment;
 
         if($res->fname != null)
         {
@@ -117,6 +119,12 @@ class ShowPostController extends Controller
 
             $data['delreq'] = $delreq;
         }
+
+        $data['muted'] = false;
+
+        $data['comments'] = Forumcomment::where('postid',$id)
+                                        ->where('dtime',null)
+                                        ->get();
 
         $result->viewcount = $result->viewcount + 1;
         $result->save();
