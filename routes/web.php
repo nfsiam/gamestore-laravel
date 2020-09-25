@@ -42,7 +42,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/forum/create-post', 'Forum\PostController@store')->name('createpost');
 
         Route::get('/forum/post/{id}', 'Forum\PostController@show')->name('showpost');
+
         Route::post('/forum/post-del-req', 'Forum\PostController@postdelreq')->name('postdelreq');
+        Route::post('/forum/report-post', 'Forum\PostController@reportpost')->name('reportpost');
 
         Route::group(['middleware'=>['mod']], function(){
             Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');

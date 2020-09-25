@@ -10,6 +10,7 @@ use App\Forumpost;
 use Auth;
 use App\User;
 use App\Postreport;
+use App\Postreact;
 use App\Postdelreq;
 use DB;
 
@@ -129,18 +130,11 @@ class PostController extends Controller
             $post['typebadge'] = 'success';
         }
         
-        $upvote = DB::table('postvotes')
-                    ->where('vote','up')
-                    ->where('postid',$res->id)
-                    ->get();
-        $downvote = DB::table('postvotes')
-                    ->where('vote','down')
-                    ->where('postid',$res->id)
-                    ->get();
+        $post['reacts'] = Postreact::where('postid',$res->id)
+                            ->count();
 
         $post['gamename'] = $res->gamename;
-        $post['upvote'] = $upvote->count();
-        $post['downvote'] = $downvote->count();
+        
 
         return $post;
     }
@@ -161,6 +155,11 @@ class PostController extends Controller
         $post = $this->formatPost($result);
 
         $user = Auth::user();
+
+        $data = [];
+
+        $data['post'] = $post;
+
         if(($user->type == 'user' || $user->type == 'publisher') && $user->username != $post['username'])
         {
             $report = ['','','',''];
@@ -180,12 +179,15 @@ class PostController extends Controller
                     $report[3] = 'fas fa-check-circle';
             }
 
-            $result->viewcount = $result->viewcount + 1;
-            $result->save();
-            return view('forum.post.postpage')->with('post',$post)->with('report',$report);
-            // if($user->username != $post['username'])
-            // {
-            // }
+            $data['report'] = $report;
+
+            $myreact = Postreact::where('postid',$post['id'])
+                                    ->where('username',$user->username)
+                                    ->exists();
+            if($myreact)
+            {
+                $data['myreact'] = true;
+            }
         }
         else if($user->username == $post['username'])
         {
@@ -194,11 +196,14 @@ class PostController extends Controller
             {
                 $delreq = "<i class='fas fa-check-circle'></i>";
             }
-            return view('forum.post.postpage')->with('post',$post)->with('delreq',$delreq);
+
+            $data['delreq'] = $delreq;
         }
+
         $result->viewcount = $result->viewcount + 1;
         $result->save();
-        return view('forum.post.postpage')->with('post',$post);
+
+        return view('forum.post.postpage')->with($data);
     }
 
     public function showpending($id)
@@ -307,6 +312,89 @@ class PostController extends Controller
             }
             else
             {
+                return response()->json(array(
+                    'error' => 'no authority'
+                ));
+            }
+        }
+    }
+
+
+    public function reportpost(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'postid'=> 'required|integer',
+            'reporttype'=> ["required","regex:(spam|duplicate|other|wrongcategory)"]
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(array(
+                'error' => 'something went wrong'
+            ));
+        }
+        else if($validator->passes())
+        {
+            $username = Auth::user()->username;
+
+            $bool = Forumpost::where('id',$request->postid)
+                                ->where('status','<>','pending')
+                                ->where('dtime',null)
+                                ->exists();
+            if($bool)
+            {
+                $rep = Postreport::where('postid',$request->postid)
+                                        ->where('reporter',$username)
+                                        ->first();
+                if($rep)
+                {
+                    //there is an old report
+                    if($rep->reporttype == $request->reporttype)
+                    {
+                        //delete old report
+                        if(Postreport::destroy($rep->id))
+                        {
+                            return response()->json(array(
+                                'cancel' => true
+                            )); 
+                        }
+                    }
+                    else
+                    {
+                        //update old report
+                        $rep->reporttype = $request->reporttype;
+                        $rep->rtime = time();
+                        $rep->save();
+                        return response()->json(array(
+                            'reported' => true
+                        ));
+                    }
+                }
+                else
+                {
+                    //create new report
+                    $rep = new Postreport();
+                    $rep->rtime = time();
+                    $rep->postid = $request->postid;
+                    $rep->reporter = $username;
+
+                    if($rep->save())
+                    {
+                        return response()->json(array(
+                            'reported' => true
+                        ));
+                    }
+                    else
+                    {
+                        return response()->json(array(
+                            'error' => 'something went wrong while reporting'
+                        ));
+                    }
+                }
+            }
+            else
+            {
+                //no post
                 return response()->json(array(
                     'error' => 'no authority'
                 ));
