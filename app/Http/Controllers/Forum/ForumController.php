@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Forumpost;
 use App\User;
 use DB;
+use App\Postreact;
+use Auth;
+
 
 class ForumController extends Controller
 {
@@ -40,18 +43,18 @@ class ForumController extends Controller
                 $posts[$k]['typebadge'] = 'success';
             }
             
-            $upvote = DB::table('postvotes')
-                        ->where('vote','up')
-                        ->where('postid',$res->id)
-                        ->get();
-            $downvote = DB::table('postvotes')
-                        ->where('vote','down')
-                        ->where('postid',$res->id)
-                        ->get();
+            $posts[$k]['reacts'] = Postreact::where('postid',$res->id)
+                            ->count();
+
+            $myreact = Postreact::where('postid',$res->id)
+                                ->where('username',Auth::user()->username)
+                                ->exists();
+            if($myreact)
+            {
+                $posts[$k]['myreact'] = true;
+            }
 
             $posts[$k]['gamename'] = $res->gamename;
-            $posts[$k]['upvote'] = $upvote->count();
-            $posts[$k]['downvote'] = $downvote->count();
         }
 
         return $posts;

@@ -37,17 +37,14 @@
                     {{$post['title']}}
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                    <span class="mr-3">
-                        <span class="text-success"><i class="fas fa-arrow-up"></i></span>
-                        {{$post['upvote']}}
-                    </span>
-                    <span>
-                        <span class="text-danger"><i class="fas fa-arrow-down"></i></span>
-                        {{$post['downvote']}}
-                    </span>
-                    <!-- <span><i class="fas fa-arrow-down"></i>{{$post['downvote']}}</span> -->
-                    </div>
+                    <button class="btn btn-white shadow-none">
+                        @if(isset($post['myreact']))
+                        <span class="text-danger"><i class="fas fa-heart"></i></span>
+                        @else
+                        <span class="text-muted"><i class="fas fa-heart"></i></span>
+                        @endif
+                        <span class="text-muted ml-2"> {{$post['reacts']}}</span>
+                    </button>
                     <div>
                         <a href="{{route('forum.showpost',[$post['id']])}}" class="btn bg-white text-primary-100 btn-sm">
                             <span class="text">view</span>

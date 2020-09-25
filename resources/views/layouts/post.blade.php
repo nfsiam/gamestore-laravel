@@ -54,7 +54,63 @@
 <!-- postmaker scripts end -->
 @elseif((Auth::user()->type == 'user' || Auth::user()->type == 'publisher') && Auth::user()->username != $post['username'])
 <!-- other users scripts -->
+<script>
+    $(document).ready(function(){
+        $('.action-report-post').click(function(){
+            const that = $(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{route('forum.reportpost')}}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    postid : "{{$post['id']}}",
+                    reporttype: $(this).data('reporttype')
+                },
+                success: function (data) {
+                    if ('error' in data) {
+                        alert(data.error);
+                    } else {
+                        if (data.reported == true) {
+                            $('.action-report-post span').html('');
+                            that.find('span').html("<i class='fas fa-check-circle'></i>");
+                        } else if (data.cancel == true) {
+                            $('.action-report-post span').html('');
+                        }
+                    }
+                }
+            });
+        });
 
+        $('.react-post').click(function(){
+            $.ajax({
+                type: 'POST',
+                url: "{{route('forum.reactpost')}}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    postid : "{{$post['id']}}"
+                },
+                success: function (data) {
+                    if('error' in data){
+                        alert(data.error);
+                    }else if('react' in data){
+                        if(data.react == 'cancel'){
+                            //remove icon
+                            $('.react-post').find('.heart').removeClass('text-danger');
+                            $('.react-post').find('.heart').addClass('text-muted');
+                            $('.react-post').find('.react-count').html(parseInt($('.react-post').find('.react-count').html())-1);
+                        }else{
+                            //add icon
+                            $('.react-post').find('.heart').removeClass('text-muted');
+                            $('.react-post').find('.heart').addClass('text-danger');
+                            $('.react-post').find('.react-count').html(parseInt($('.react-post').find('.react-count').html())+1);
+
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
 <!-- other users scripts end -->
 @elseif(Auth::user()->type =='moderator' || Auth::user()->type =='admin')
 <!-- mod scripts -->
