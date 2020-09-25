@@ -69,8 +69,9 @@
   
                   <div class="box-button pb-3">
                       <button class="btn btn-info btn-sm"><i class="fa fa-download"></i> <span class="ml-2">Download</span></button>
-                      <button class="btn btn-danger btn-sm"><i class="fa fa-star"></i> <span class="ml-1">Rate</span></button>
-                      <button class="btn btn-success btn-sm"> <i class="fa fa-gift"></i> <span class="ml-1">Send As Gift</span>    </button>
+                      
+                      <a href="/enduser/games/rate/{{$game->id}}"><button class="btn btn-danger btn-sm"><i class="fa fa-star"></i> <span class="ml-1">Rate</span></button></a>
+                  <a href="/enduser/games/gift/{{$game->id}}"><button class="btn btn-success btn-sm"> <i class="fa fa-gift"></i> <span class="ml-1">Send As Gift</span>    </button></a>
                   </div>
   
                 </div>

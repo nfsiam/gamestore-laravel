@@ -78,6 +78,7 @@
 
                             <div class="edit-profile mt-3">
                                 <form action="" method="POST" enctype="multipart/form-data">
+                                  @csrf
                                     <table class="table">
                                         <tr>
                                             <th>Username</th>
@@ -85,30 +86,51 @@
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td><input type="email" class="form-control"  name="" id="" value="{{$profileinfo->email}}"></td>
+                                            <td><input type="email" class="form-control"  name="email" id="" value="{{$profileinfo->email}}"></td>
+                                            <td> 
+                                              @error('email')
+                                                  {{ $message }}
+                                              @enderror
+                                          </td>
                                         </tr>
                                        
                                         <tr>
                                             <th>Profile Picture</th>
                                             <td>
                                               <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile02" accept="image/*" enctype="multipart/form-data">
+                                                <input type="file" class="custom-file-input" name="propic" id="inputGroupFile02" accept="image/*" enctype="multipart/form-data">
                                                 <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                                               </div>
                                             </td>
+                                            <td> 
+                                              @error('propic')
+                                                  {{ $message }}
+                                              @enderror
+                                          </td>
                                         </tr>
                                         <tr>
-                                          <th>Date Of Birth</th>
+                                          <th>Date Of Birth </th>
                                           <td>
-                                            <input type="date" name="{{$profileinfo->dob}}" id="" class="form-control">
+                                            
+                                            <input type="date" name="dateofbirth" value="{{ date_format(new DateTime($profileinfo->dob),"Y-m-d") }}" id="" class="form-control">
                                           </td>
+                                          <td> 
+                                            @error('dateofbirth')
+                                                {{ $message }}
+                                            @enderror
+                                        </td>
                                         </tr>
                                         
                                         <tr>
                                           <th>Bio</th>
                                           <td>
-                                            <input type="text" class="form-control"  name="" id="" value="{{$profileinfo->bio}}">
+                                            <input type="text" class="form-control"  name="bio" id="" value="{{$profileinfo->bio}}">
                                           </td>
+                                          <td> 
+                                            @error('bio')
+                                                {{ $message }}
+                                            @enderror
+                                        </td>
                                         </tr>
                                         <tr>
                                           <th>

@@ -42,6 +42,7 @@ class Store
                 ->join('games','libraryentries.gameid','games.id')
                 ->where('username',Auth::user()->username)
                 ->get();
+        
         return $games;
     }
 }
