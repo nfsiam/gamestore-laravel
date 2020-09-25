@@ -36,11 +36,17 @@ Route::middleware(['auth'])->group(function(){
     Route::name('forum.')->group(function () {
         Route::get('/forum', 'Forum\ForumController@index')->name('index');
 
+        Route::post('/forum/search-post', 'Forum\ForumController@searchpost')->name('searchpost');
+
         Route::get('/forum/create-post', 'Forum\PostController@create')->name('createpost');
         Route::post('/forum/create-post', 'Forum\PostController@store')->name('createpost');
 
+        Route::get('/forum/post/{id}', 'Forum\PostController@show')->name('showpost');
+        Route::post('/forum/post-del-req', 'Forum\PostController@postdelreq')->name('postdelreq');
+
         Route::group(['middleware'=>['mod']], function(){
             Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');
+            Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\PostController@showpending')->name('dashboard.showpending');
         });
     });
 
