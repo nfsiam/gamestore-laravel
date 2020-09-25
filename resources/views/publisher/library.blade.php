@@ -39,139 +39,43 @@
         </div>
         
         <h1 class="mt-4 font-weight-light">Search</h1>
-        <form action="" method="GET">
-          <input style="padding: 10px; width: 300px; border: 1px solid;" class="form-input" type="search" placeholder="Type to search">
-      </form>
+          <input id="searchLibrary" style="padding: 10px; width: 300px; border: 1px solid;" class="form-input" type="search" placeholder="Type to search">
+      
        
         
         
         <div class="row">
             <div class="col-lg-12 col-sm-5">
              <!--  d-flex flex-wrap -->
-              <div class="game-list d-flex  flex-wrap pt-3">
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
+              <div class="game-list d-flex  flex-wrap pt-3" id="game-list-id">
+              
+              @foreach ($games as $game)
+                <div class="box-wrapper">
+                  <div class="game-wrapper d-flex">
 
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
+                      <div class="box mb-3">
+                        <img src="{{asset($game->propic)}}" alt="" srcset=""> 
+                      </div>
 
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
+                      <div class="box-text mr-3 mb-3 text-center">
+                        <h5>{{$game->title}}</h5>
+                        <h6>Current Price : ${{$game->price}}</h6>
+                        <h6>Publisher: {{$game->publisher}}</h6>
+                        <h6>Release Date : {{$game->publishdate}}</h6>
+                      </div>
+
+                  </div>
+
+                  <div class="box-button pb-3">
+                      <button class="offer-btn btn btn-success btn-sm" id="1"> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
+                  </div>
 
                 </div>
 
-                <div class="box-button pb-3">
-                    <button class="patch-btn btn btn-info btn-sm" id="1"><i class="fa fa-upload"></i> <span class="ml-2">Set Patch</span></button>
-                    <button class="offer-btn btn btn-success btn-sm" id="1"> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
-                </div>
-
-              </div>
+              @endforeach
 
 
-
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-                </div>
-
-                <div class="box-button pb-3">
-                  <button class="patch-btn btn btn-info btn-sm" id="3"><i class="fa fa-upload"></i> <span class="ml-2">Set Patch</span></button>
-                  <button class="offer-btn btn btn-success btn-sm" id="4"> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
-                </div>
-
-
-            </div>
-
-
-
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-              <div class="box-button pb-3">
-                <button class="patch-btn btn btn-info btn-sm" id=""><i class="fa fa-upload"></i> <span class="ml-2">Set Patch</span></button>
-                <button class="offer-btn btn btn-success btn-sm" id=""> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
-            </div>
-
-
-            
-            </div>
-
-
-              <div class="box-wrapper ">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-              <div class="box-button pb-3">
-                <button class="patch-btn btn btn-info btn-sm" id=""><i class="fa fa-upload"></i> <span class="ml-2">Set Patch</span></button>
-                <button class="offer-btn btn btn-success btn-sm" id=""> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
-            </div>
-
-              </div>
-
-
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-              <div class="box-button pb-3">
-                <button class="patch-btn btn btn-info btn-sm" id=""><i class="fa fa-upload"></i> <span class="ml-2">Set Patch</span></button>
-                <button class="offer-btn btn btn-success btn-sm" id=""> <i class="fa fa-money"></i> <span class="ml-1">Set Offer</span></button>
-            </div>
-
-              </div>
+          
             </div>
           </div>
       </div>

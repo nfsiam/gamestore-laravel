@@ -1,0 +1,19 @@
+* Food ratting system  
+
+-> food panda 
+-> shohoz foods 
+ will take food items and users can rate it
+
+
+
+* Web Crawler, scraper 
+
+  Languaged = PHP 
+
+
+Feature : 
+* register/login
+
+* Will suggest food from wishlist, ratted food 
+
+* 

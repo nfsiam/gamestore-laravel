@@ -26,17 +26,30 @@ Route::get('/enduser/library','EnduserController@enduserLibrary')->name('endLibr
 Route::get('/enduser/community','EnduserController@endCommunity')->name('endCommunity');
 Route::get('/enduser/connect','EnduserController@enduserConnect')->name('endConncet');
 Route::get('/enduser/myprofile','EnduserController@enduserMyprofile')->name('endMyprofile');
+Route::get('/enduser/myprofile/editprofile','EnduserController@enduserEditprofile')->name('endEditprofile');
+Route::post('/enduser/myprofile/editprofile','EnduserController@enduserEditprofileSubmit');
 Route::get('/enduser/plans','EnduserController@enduserPlans')->name('endPlans');
 
-Route::get('/publisher/report','PublisherController@publisherReport')->name('pubReport');
-Route::get('/publisher/store','PublisherController@publisherStore')->name('pubStore');
-Route::get('/publisher/library','PublisherController@publisherLibrary')->name('pubLibrary');
-Route::get('/publisher/myprofile','PublisherController@publisherMyprofile')->name('pubCommunity');
-Route::get('/publisher/publish','PublisherController@publisherPublish')->name('pubPublish');
 
-Route::post('/publisher/publish','PublisherController@publisherUpload')->name('pubPublishPost');
+Route::get('/publisher/report.html','PublisherController@publisherReport')->name('pubReport');
+Route::get('/publisher/store.html','PublisherController@publisherStore')->name('pubStore');
+Route::get('/publisher/library.html','PublisherController@publisherLibrary')->name('pubLibrary');
+Route::get('/publisher/myprofile.html','PublisherController@publisherMyprofile')->name('pubCommunity');
+Route::get('/publisher/publish.html','PublisherController@publisherPublish')->name('pubPublish');
+Route::post('/publisher/publish.html','PublisherController@publisherUpload')->name('pubPublishPost');
 
+Route::get('/ajaxmethod/all/{id}','AjaxController@search');
+Route::get('/ajaxmethod/lib/{id}','AjaxController@searchLib');
+Route::get('/ajaxmethod/all/','AjaxController@getAll');
+Route::get('/ajaxmethod/lib/','AjaxController@getAll');
+Route::get('/ajaxmethod/cart/{id}','AjaxController@addToCart');
+Route::get('/ajaxmethod/showcartitems/','AjaxController@showCartitems');
 
+Route::get('ajaxmethod/updatecart/{id}','AjaxController@updateCart');
+
+Route::get('ajaxmethod/addfriend/{id}','AjaxController@addFriend');
+Route::get('ajaxmethod/removefriend/{id}','AjaxController@removeFriend');
+Route::get('ajaxmethod/acceptfriend/{id}','AjaxController@acceptFriend');
 
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');

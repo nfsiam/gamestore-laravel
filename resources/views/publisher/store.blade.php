@@ -36,123 +36,40 @@
             
         </div>
         <h1 class="mt-4 font-weight-light">Search</h1>
-        <form action="" method="GET">
-          <input style="padding: 10px; width: 300px; border: 1px solid;" class="form-input" type="search" placeholder="Type to search">
+        
+          <input id="searchStore" style="padding: 10px; width: 300px; border: 1px solid;" class="form-input" type="search" placeholder="Type to search">
           <button class="btn btn-primary mb-1" style="padding: 10px; padding-right: 15px; padding-left: 15px;"><i class="fa fa-search"></i></button>
           <br>
           
-        </form>
+      
        
         
         
         <div class="row">
             <div class="col-lg-12 col-sm-5">
-              <div class="game-list d-flex  flex-wrap pt-3">
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
+              <div class="game-list d-flex  flex-wrap pt-3" id="game-list-id">
 
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
+              @foreach ($data as $game)
+                <div class="box-wrapper">
+                  <div class="game-wrapper d-flex">
 
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
+                      <div class="box mb-3">
+                          <img src="{{asset($game->propic)}}" alt="" srcset=""> 
+                      </div>
 
+                      <div class="box-text mr-3 mb-3 text-center">
+                        <h5>{{$game->title}}</h5>
+                      
+                        <h6>Current Price : $30</h6>
+                        <h6>Publisher: {{$game->publisher}}</h6>
+                        <h6>Release Date : {{$game->publishdate}}</h6>
+                      </div>
+                  </div>
                 </div>
-
-              
-              </div>
-
+                  
+              @endforeach
 
 
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-                </div>
-
-            
-
-            </div>
-
-
-
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-
-              
-              </div>
-
-
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-                
-              </div>
-
-
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-              
-
-              </div>
             </div>
           </div>
       </div>

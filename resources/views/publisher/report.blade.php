@@ -21,12 +21,12 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading"><b>Menu</b></div>
       <div class="list-group list-group-flush">
-        <a href="/publisher/report" class="list-group-item list-group-item-action bg-light">Report</a>
-        <a href="/publisher/store" class="list-group-item list-group-item-action bg-light">Store</a>
-        <a href="/publisher/library" class="list-group-item list-group-item-action bg-light">Library</a>
-        <a href="/publisher/community" class="list-group-item list-group-item-action bg-light">Communnity</a>
-        <a href="/publisher/myprofile" class="list-group-item list-group-item-action bg-light">My Profile</a>
-        <a href="/publisher/publish" class="list-group-item list-group-item-action bg-light">Publish Game</a>
+        <a href="/publisher/report.html" class="list-group-item list-group-item-action bg-light">Report</a>
+        <a href="/publisher/store.html" class="list-group-item list-group-item-action bg-light">Store</a>
+        <a href="/publisher/library.html" class="list-group-item list-group-item-action bg-light">Library</a>
+        <a href="/publisher/community.html" class="list-group-item list-group-item-action bg-light">Communnity</a>
+        <a href="/publisher/myprofile.html" class="list-group-item list-group-item-action bg-light">My Profile</a>
+        <a href="/publisher/publish.html" class="list-group-item list-group-item-action bg-light">Publish Game</a>
         <a href="/logout" class="list-group-item list-group-item-action bg-light">Logout</a>
       </div>
 

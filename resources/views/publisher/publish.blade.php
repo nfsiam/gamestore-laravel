@@ -61,15 +61,7 @@
                                     </td>
                                 </tr>
                                 
-                                <tr>
-                                    <th>Release Date</th>
-                                    <td><input type="date" name="releasedate" id="" class="form-control"></td>
-                                    <td>
-                                      @error('releasedate')
-                                        {{ $message }}
-                                      @enderror
-                                    </td>
-                                </tr>
+                               
                                
                                 <tr>
                                     <th>Game Picture</th>

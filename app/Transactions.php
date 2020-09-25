@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Games extends Model
+class Transactions extends Model
 {
     //
-    protected $table = 'games';
+    protected $table = 'transactions';
     public $timestamps = false;
+
 }

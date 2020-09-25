@@ -45,10 +45,10 @@
                         <div class="my-profile-wrap d-flex flex-wrap">
                             <div class="profile-wrapper">
                               <div class="propic-wrapper d-flex flex-wrap mt-4 ml-3">
-                                <img src="ironman.jpg" alt="" class="img-circle">
+                                <img src="{{asset($profileinfo->propic)}}" alt="" class="img-circle">
                                 <div>
-                                  <h3 class="mt-4 ml-4">Iron Man</h3>
-                                  <h5 class="mt-4 ml-4 font-weight-light">Live and let live</h5>
+                                  <h3 class="mt-4 ml-4">"{{$profileinfo->username}}</h3>
+                                  <h5 class="mt-4 ml-4 font-weight-light">{{$profileinfo->bio}}</h5>
                                 </div>
                                
                             </div>
@@ -57,30 +57,21 @@
                                 <ul class="navbar-nav mr-auto">
 
                                   <li class="nav-item">
-                                    <a href="myprofile.html" class="nav-link">  <i class="fa fa-address-book"></i> General </a>
+                                    <a href="/enduser/myprofile" class="nav-link">  <i class="fa fa-address-book"></i> General </a>
                                   </li>
 
                                   <li class="nav-item">
-                                    <a class="nav-link" href="yourphotos.html"> <i class="fa fa-photo"></i> Your Photos </a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="achievments.html"> <i class="fa fa-trophy"></i>Achivements and Rewards</a>
-                                  </li>
-
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="editprofile.html"> <i class="fa fa-user"></i> Edit Profile</a>
+                                    <a class="nav-link" href="/enduser/myprofile/editprofile"> <i class="fa fa-user"></i> Edit Profile</a>
                                   </li>
                                   
                                   <li class="nav-item">
-                                    <a class="nav-link" href="friendlist.html"> <i class="fa fa-users"></i> Friendlist</a>
+                                    <a class="nav-link" href="/enduser/myprofile/friendlist"> <i class="fa fa-users"></i> Friendlist</a>
                                   </li>
 
                                   <li class="nav-item">
-                                    <a class="nav-link" href="wishlist.html"> <i class="fa fa-gratipay"></i> Wishlist</a>
+                                    <a class="nav-link" href="/enduser/myprofile/wallet"> <i class="fa fa-money"></i> Wallet </a>
                                   </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="wallet.html"> <i class="fa fa-money"></i> Wallet </a>
-                                  </li>
+
                                 </ul>
                               </nav>
                             </div>
@@ -90,24 +81,13 @@
                                     <table class="table">
                                         <tr>
                                             <th>Username</th>
-                                            <td><input type="text" class="form-control" disabled value="ksq1234"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Firstname</th>
-                                            <td><input type="text" class="form-control" name="" id="" value="Mushfiqur"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Lastname</th>
-                                            <td><input type="text" class="form-control" name="" id="" value="Rahman"></td>
+                                            <td><input type="text" class="form-control" disabled value="{{$profileinfo->username}}"></td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td><input type="email" class="form-control"  name="" id="" value="ksq1234@gmail.com"></td>
+                                            <td><input type="email" class="form-control"  name="" id="" value="{{$profileinfo->email}}"></td>
                                         </tr>
-                                        <tr>
-                                            <th>Phone Number</th>
-                                            <td><input type="number" class="form-control"  name="" id="" value="12312312"></td>
-                                        </tr>
+                                       
                                         <tr>
                                             <th>Profile Picture</th>
                                             <td>
@@ -120,14 +100,14 @@
                                         <tr>
                                           <th>Date Of Birth</th>
                                           <td>
-                                            <input type="date" name="" id="" class="form-control">
+                                            <input type="date" name="{{$profileinfo->dob}}" id="" class="form-control">
                                           </td>
                                         </tr>
                                         
                                         <tr>
                                           <th>Bio</th>
                                           <td>
-                                            <input type="text" class="form-control"  name="" id="" value="live and let live">
+                                            <input type="text" class="form-control"  name="" id="" value="{{$profileinfo->bio}}">
                                           </td>
                                         </tr>
                                         <tr>

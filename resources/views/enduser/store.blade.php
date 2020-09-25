@@ -31,150 +31,58 @@
     </div> 
 
       <div class="container-fluid">
+        
         <button id="notification-btn" class="btn btn-primary mr-3 mt-3" style="float: right;"> <i class="fa fa-bell"></i> </button>
+        <button id="cart-btn" class="btn btn-primary mr-3 mt-3" style="float: right;"> <i class="fa fa-shopping-basket"></i> </button>
+
+        <div class="cart-menu">
+         
+        </div>
+         {{--  <button id="checkoutbtn" style="float:right;" class="mr-3 btn btn-sm btn-primary">Checkout</button>
+          <button id="removeallbtn" style="float:right;" class="mr-3 btn btn-sm btn-danger">Remove All</button> --}}
         <div class="notification-menu">
-            
+         
         </div>
         <h1 class="mt-4 font-weight-light">Search</h1>
-        <form action="" method="GET">
+       
           <input style="padding: 10px; width: 300px; border: 1px solid;" class="form-input" type="search" placeholder="Type to search">
           <button class="btn btn-primary mb-1" style="padding: 10px; padding-right: 15px; padding-left: 15px;"><i class="fa fa-search"></i></button>
           <br>
-          <button class="btn btn-info btn-sm mt-2"><i class="fa fa-filter"></i>   <span class="ml-2">Add Filter</span></button>
-          <button class="btn btn-warning btn-sm mt-2"><i class="fa fa-shopping-cart"></i>   <span class="ml-2">Cart</span></button>
-        </form>
+         
        
         
         
         <div class="row">
             <div class="col-lg-12 col-sm-5">
               <div class="game-list d-flex  flex-wrap pt-3">
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
 
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
+                @foreach ($games as $game)
+                  <div class="box-wrapper">
+                    <div class="game-wrapper d-flex">
+    
+                        <div class="box mb-3">
+                          <img src="{{asset($game->propic)}}" alt="" srcset=""> 
+                        </div>
+    
+                        <div class="box-text mr-3 mb-3 text-center">
+                          <h5>{{$game->title}}</h5>
+                          <h6>Current Price : ${{$game->price}}</h6>
+                          <h6>Publisher: {{$game->publisher}}</h6>
+                          <h6>Release Date : {{$game->publishdate}}</h6>
+                        </div>
+    
                     </div>
-
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
+    
+                    <div class="box-button pb-3">
+                    <input type="button"  class="cart-btn btn btn-danger btn-sm" value="Add to cart" id="{{$game->id}}">
+                    <input type="button"  class="plan-btn btn btn-success btn-sm" value="Buy from plan" id="{{$game->id}}">
+                     
                     </div>
-
-                </div>
-
-                <div class="box-button pb-3">
-                  <input type="button"  class="btn btn-danger btn-sm" value="Add to cart">
-                  <input type="button" class="btn btn-success btn-sm" value="Buy Now">
-                  <input type="button" class="btn btn-warning btn-sm" value="Add to wish list">
-                </div>
-
-              </div>
-
-
-
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-                </div>
-
-                <div class="box-button pb-3">
-                  <input type="button"  class="btn btn-danger btn-sm" value="Add to cart">
-                  <input type="button" class="btn btn-success btn-sm" value="Buy Now">
-                  <input type="button" class="btn btn-warning btn-sm" value="Add to wish list">
-                </div>
-
-            </div>
-
-
-
-              <div class="box-wrapper">
-                
-                <div class="game-wrapper d-flex">
-
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-
-                <div class="box-button pb-3">
-                  <input type="button"  class="btn btn-danger btn-sm" value="Add to cart">
-                  <input type="button" class="btn btn-success btn-sm" value="Buy Now">
-                  <input type="button" class="btn btn-warning btn-sm" value="Add to wish list">
-                </div>
-              </div>
-
-
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-                <div class="box-button pb-3">
-                  <input type="button"  class="btn btn-danger btn-sm" value="Add to cart">
-                  <input type="button" class="btn btn-success btn-sm" value="Buy Now">
-                  <input type="button" class="btn btn-warning btn-sm" value="Add to wish list">
-                </div>
-              </div>
-
-
-              <div class="box-wrapper">
-                <div class="game-wrapper d-flex">
-                    <div class="box mb-3">
-                      <img src="contra.JPG" alt="" srcset=""> 
-                    </div>
-                    <div class="box-text mr-3 mb-3 text-center">
-                      <h5>Contra</h5>
-                      <h5>Size : 300kb</h5>
-                      <h5>Platform : Nes</h5>
-                      <h6 style="text-decoration: line-through;">Prev Price : $60</h6>
-                      <h6>Current Price : $30</h6>
-                      <h6>Valid till : 02/10/2</h6>
-                    </div>
-              </div>
-
-                <div class="box-button pb-3">
-                  <input type="button"  class="btn btn-danger btn-sm" value="Add to cart">
-                  <input type="button" class="btn btn-success btn-sm" value="Buy Now">
-                  <input type="button" class="btn btn-warning btn-sm" value="Add to wish list">
-                </div>
-
-              </div>
+    
+                  </div>
+                @endforeach
+              
+            
             </div>
           </div>
       </div>

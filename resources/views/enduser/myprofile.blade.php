@@ -45,10 +45,10 @@
                         <div class="my-profile-wrap d-flex flex-wrap">
                             <div class="profile-wrapper">
                               <div class="propic-wrapper d-flex flex-wrap mt-4 ml-3">
-                                <img src="ironman.jpg" alt="" class="img-circle">
+                                <img src="{{asset($profileinfo->propic)}}" alt="" class="img-circle">
                                 <div>
-                                  <h3 class="mt-4 ml-4">Iron Man</h3>
-                                  <h5 class="mt-4 ml-4 font-weight-light">Live and let live</h5>
+                                <h3 class="mt-4 ml-4">{{$profileinfo->username}}</h3>
+                                <h5 class="mt-4 ml-4 font-weight-light">{{$profileinfo->bio}}</h5>
                                 </div>
                             </div>
                             
@@ -57,30 +57,21 @@
                                 <ul class="navbar-nav mr-auto">
 
                                   <li class="nav-item">
-                                    <a href="myprofile.html" class="nav-link">  <i class="fa fa-address-book"></i> General </a>
+                                    <a href="/enduser/myprofile" class="nav-link">  <i class="fa fa-address-book"></i> General </a>
                                   </li>
 
                                   <li class="nav-item">
-                                    <a class="nav-link" href="yourphotos.html"> <i class="fa fa-photo"></i> Your Photos </a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="achievments.html"> <i class="fa fa-trophy"></i>Achivements and Rewards</a>
-                                  </li>
-
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="editprofile.html"> <i class="fa fa-user"></i> Edit Profile</a>
+                                    <a class="nav-link" href="/enduser/myprofile/editprofile"> <i class="fa fa-user"></i> Edit Profile</a>
                                   </li>
                                   
                                   <li class="nav-item">
-                                    <a class="nav-link" href="friendlist.html"> <i class="fa fa-users"></i> Friendlist</a>
+                                    <a class="nav-link" href="/enduser/myprofile/friendlist"> <i class="fa fa-users"></i> Friendlist</a>
                                   </li>
 
                                   <li class="nav-item">
-                                    <a class="nav-link" href="wishlist.html"> <i class="fa fa-gratipay"></i> Wishlist</a>
+                                    <a class="nav-link" href="/enduser/myprofile/wallet"> <i class="fa fa-money"></i> Wallet </a>
                                   </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="wallet.html"> <i class="fa fa-money"></i> Wallet </a>
-                                  </li>
+
                                 </ul>
                               </nav>
                             </div>
@@ -90,31 +81,22 @@
                                 
                                 <tr>
                                   <th>Username</th>
-                                  <td>Ksq1234</td>
+                                  <td>{{$profileinfo->username}}</td>
                                 </tr>
-                                <tr>
-                                  <th>Firstname</th>
-                                  <td>Mushfiqur</td>
-                                </tr>
-                                <tr>
-                                  <th>Lastname</th>
-                                  <td>Rahman</td>
-                                </tr>
-                                <tr>
-                                  <th>Current Badge</th>
-                                  <td>Star II</td>
-                                </tr>
-                                <tr>
+                               
+                              
+                              
+                              {{--   <tr>
                                   <th>Contribution Points</th>
                                   <td>12</td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                   <th>Total Owned Games</th>
-                                  <td>100</td>
+                                  <td>{{$games}}</td>
                                 </tr>
                                 <tr>
                                     <th>Current Plan</th>
-                                    <td>Cheetah Plus</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                   <th>Balance</th>

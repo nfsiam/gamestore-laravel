@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Middleware\Publish;
+use App\Http\Middleware\Store;
+use App\Http\Middleware\Library;
 use Illuminate\Validation\Rule;
 
 class PublisherController extends Controller
@@ -12,17 +14,24 @@ class PublisherController extends Controller
     //
     public function publisherReport()
     {
+       
         return view('publisher.report');
     }
 
     public function publisherStore()
     {
-        return view('publisher.store');
+       
+        $store = new Store();
+        $data = $store->getData();
+        return view('publisher.store',['data'=>$data]);
     }
 
     public function publisherLibrary()
     {
-        return view('publisher.library');
+       $library = new Library();
+       $games = $library->getDataByUser();
+        return view('publisher.library',['games'=>$games]);
+
     }
 
     public function publisherCommunity()
@@ -42,15 +51,9 @@ class PublisherController extends Controller
 
     public function publisherUpload(Request $request)
     {
-          
-       
-        //Publish::validate($request);
-       
         $publish = new Publish();
         $publish->validate($request);
-
-        //return redirect('pubPublish');
+        return view('publisher.publish');
         //return redirect()->route('pubPublish');
-
     }
 }

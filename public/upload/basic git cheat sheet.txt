@@ -1,0 +1,30 @@
+git init // init local repo
+
+git remote add origin "repo link"
+
+git add . // stage files for commit 
+
+git commit -m "commit message" // commit  / snapshot / record changes
+
+git push origin master // upload to server repo from master branch
+
+
+git branch branchname // create new local branch 
+
+git checkout branchname/commitid // switch to branch or specific commit   
+
+
+git add .
+
+git commit -m "commit message"
+
+git push origin branchname 
+
+//////////////////////////////////////////////
+
+
+git pull origin master/branchname 
+
+
+git pull origin master/branchname --allow-unrealed-histories
+
