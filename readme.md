@@ -26,5 +26,5 @@ php artisan serve
 ```
 To Start the Express Server (optional)
 ```sh
-nodemon ChatServer/index.js
+nodemon ExServer/index.js
 ```

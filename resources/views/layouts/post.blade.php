@@ -8,7 +8,7 @@
 @section('content')
 
 <!-- post  -->
-@include('forum.includes.post');
+@include('forum.includes.post')
 
 <!-- mod action buttons  -->
 @yield('modactions')
@@ -117,4 +117,7 @@
 
 <!-- mod scripts end -->
 @endif
+
+@yield('childscripts')
+
 @endsection

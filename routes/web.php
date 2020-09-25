@@ -38,16 +38,19 @@ Route::middleware(['auth'])->group(function(){
 
         Route::post('/forum/search-post', 'Forum\ForumController@searchpost')->name('searchpost');
 
-        Route::get('/forum/create-post', 'Forum\PostController@create')->name('createpost');
-        Route::post('/forum/create-post', 'Forum\PostController@store')->name('createpost');
+        Route::get('/forum/create-post', 'Forum\Post\CreatePostController@create')->name('createpost');
+        Route::post('/forum/create-post', 'Forum\Post\CreatePostController@store')->name('createpost');
 
-        Route::get('/forum/post/{id}', 'Forum\PostController@show')->name('showpost');
+        Route::get('/forum/post/{id}', 'Forum\Post\ShowPostController@show')->name('showpost');
 
-        Route::post('/forum/post-del-req', 'Forum\PostController@postdelreq')->name('postdelreq');
+        Route::post('/forum/post-del-req', 'Forum\Post\DeletePostReqController@postdelreq')->name('postdelreq');
 
-        Route::post('/forum/report-post', 'Forum\PostController@reportpost')->name('reportpost');
+        Route::post('/forum/report-post', 'Forum\Post\ReportPostController@reportpost')->name('reportpost');
 
-        Route::post('/forum/react-post', 'Forum\PostController@reactpost')->name('reactpost');
+        Route::post('/forum/react-post', 'Forum\Post\ReactPostController@reactpost')->name('reactpost');
+
+        Route::post('/forum/create-comment', 'Forum\Comment\CreateCommentController@store')->name('createcomment');
+
 
         Route::group(['middleware'=>['mod']], function(){
             Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');
