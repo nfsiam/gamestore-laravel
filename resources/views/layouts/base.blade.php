@@ -67,9 +67,8 @@
     <script>
         function convertTimes(){
             $('.tstamp').each(function(){
-                const offset = moment().utcOffset();
-                console.log(offset);
                 $(this).html(moment.unix(parseInt($(this).html())).format('hh:mm:ss a'));
+                $(this).removeClass('tstamp');
             });
         }
         $(document).ready(function(){

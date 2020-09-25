@@ -51,7 +51,7 @@
                 <label for="shortDes">Title</label>
                 <textarea class="form-control cvalid" id="title" rows="3" name="title"></textarea>
                 <small class="form-text text-muted">
-                    A short description or title, not more than 30 characters
+                    A short description or title, not more than 300 characters
                 </small>
                 <small class="err" id="errtitle"></small>
             </div>
