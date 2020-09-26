@@ -81,6 +81,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/forum/dashboard/report', 'Forum\ReportController@index');
             Route::get('/forum/dashboard/report-csv', 'Forum\ReportController@csv');
 
+            Route::get('/forum/dashboard/all-users', 'Forum\Dashboard\UserController@index')->name('dashboard.allusers');
+
+            Route::post('/forum/dashboard/muteunmute-user', 'Forum\Dashboard\UserController@muteunmute')->name('dashboard.muteunmute');
+
         });
     });
 

@@ -15,6 +15,7 @@ use App\Postreport;
 use App\Postreact;
 use App\Postdelreq;
 use App\Forumcomment;
+use App\Muteduser;
 
 class ShowPostController extends Controller
 {
@@ -121,6 +122,12 @@ class ShowPostController extends Controller
         }
 
         $data['muted'] = false;
+        
+        if(Muteduser::where('username',$user->username)->exists())
+        {
+            $data['muted'] = true;
+        }
+
 
         $data['comments'] = Forumcomment::where('postid',$id)
                                         ->where('dtime',null)
