@@ -8,14 +8,21 @@ use App\Http\Middleware\Publish;
 use App\Http\Middleware\Store;
 use App\Http\Middleware\Library;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class PublisherController extends Controller
 {
     //
     public function publisherReport()
     {
-       
-        return view('publisher.report');
+        $datas = DB::table('transactions')
+                ->join('games','games.id','transactions.gameid')
+                ->join('libraryentries','transactions.gameid','libraryentries.gameid')
+                ->where('publisher',Auth::user()->username)
+                ->get();
+        
+        return view('publisher.report',['datas'=>$datas]);
     }
 
     public function publisherStore()
@@ -54,6 +61,10 @@ class PublisherController extends Controller
         $publish = new Publish();
         $publish->validate($request);
         return view('publisher.publish');
-        //return redirect()->route('pubPublish');
+    }
+    public function publisherLogout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

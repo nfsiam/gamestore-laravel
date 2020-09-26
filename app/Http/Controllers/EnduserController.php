@@ -12,6 +12,8 @@ use Auth;
 use Webpatser\Uuid\Uuid;
 use App\User;
 use GuzzleHttp\Client;
+use App\Libraryentries;
+use App\Transactions;
 
 
 class EnduserController extends Controller
@@ -49,9 +51,6 @@ class EnduserController extends Controller
                         ->where('username','!=',Auth::user()->username)
                         ->where('type','user')
                         ->get(); 
-       /*  $request = DB::table('friends')
-                    ->where('sender','||','receiver',Auth::user()->username)
-                    -get(); */
         return view('enduser.connect',['users'=>$users]);
     }
 
@@ -118,6 +117,7 @@ class EnduserController extends Controller
         $games = DB::table('transactions')
                     ->where('username',Auth::user()->username)
                     ->get();
+
       return view('enduser.editprofile',['profileinfo'=>$profileinfo[0],'games'=>count($games)]);
     }
 
@@ -128,7 +128,7 @@ class EnduserController extends Controller
 
     public function enduserRatePost(Request $request,$id)
     {
-       //return view('enduser.rate');
+      
        $library = new Library();
        $library->rateGame($request,$id);
        
@@ -138,13 +138,6 @@ class EnduserController extends Controller
 
     public function enduserGift($id)
     {
-
-        
-        //$result = json_decode($response->getBody(),true);
-
-        //print_r($result);
-
-
         return view('enduser.gift');
     }
     public function enduserGiftPost(Request $request,$id)
@@ -157,9 +150,7 @@ class EnduserController extends Controller
 
         if(count($user)>0)
         {
-            // guzzel code here ;
-
-            
+           
             $client = new Client();
             $response = $client->request('GET', 'http://localhost:3000/home/'.$request->username, [
                 'content-type' => 'application/json',
@@ -171,19 +162,41 @@ class EnduserController extends Controller
             
             if($result[0]['permission']=="allowed")
             {
-                return "<script>alert('gifted');</script>";
+        
+                $libraryentries  = new Libraryentries();
+                $libraryentries = $libraryentries::where('username',Auth::user()->username)->where('gameid',$id)->first();
+                $libraryentries->username = $request->username;
+                $libraryentries->save();
+
+                $transactions = new Transactions();
+                $transactions = $transactions::where('username',Auth::user()->username)->where('gameid',$id)->first();
+                $transactions->username = $request->username;
+                $transactions->purchaseprice = 0 ;
+                $transactions->transactiontype = 'gift';
+                $transactions->save(); 
+
+                echo "<script>alert('gifted');</script>";
+                
             }
             else
             {
-                return "<script>alert('denied');</script>";
+                echo "<script>alert('denied');</script>";
             }
 
         }
         else
         {
-            return "<script>alert('invalid username');</script>";
+            echo "<script>alert('invalid username');</script>";
         }
+        return redirect()->route('endLibrary');
     }
+
+    public function enduserLogout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+    
 
     
 }

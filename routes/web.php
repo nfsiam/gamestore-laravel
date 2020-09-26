@@ -34,6 +34,7 @@ Route::post('/enduser/games/rate/{id}','EnduserController@enduserRatePost');
 
 Route::get('/enduser/games/gift/{id}','EnduserController@enduserGift');
 Route::post('/enduser/games/gift/{id}','EnduserController@enduserGiftPost');
+Route::get('/enduser/logout','EnduserController@enduserLogout');
 
 Route::get('/publisher/report.html','PublisherController@publisherReport')->name('pubReport');
 Route::get('/publisher/store.html','PublisherController@publisherStore')->name('pubStore');
@@ -41,6 +42,7 @@ Route::get('/publisher/library.html','PublisherController@publisherLibrary')->na
 Route::get('/publisher/myprofile.html','PublisherController@publisherMyprofile')->name('pubCommunity');
 Route::get('/publisher/publish.html','PublisherController@publisherPublish')->name('pubPublish');
 Route::post('/publisher/publish.html','PublisherController@publisherUpload')->name('pubPublishPost');
+Route::get('/publisher/logout.html','PublisherController@publisherLogout')->name('pubPublish');
 
 Route::get('/ajaxmethod/all/{id}','AjaxController@search');
 Route::get('/ajaxmethod/lib/{id}','AjaxController@searchLib');
