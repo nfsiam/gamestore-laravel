@@ -31,6 +31,12 @@
             id="delete">Delete</button>
         <button class="dropdown-item" type="button" data-postid="{{$post['id']}}"
             id="turnoff">Turn Off Comment <span></span></button>
+        <button class="dropdown-item mute-unmute" type="button" data-username="{{$post['username']}}"
+            >Mute User<span>
+            @isset($post['postermuted'])
+                <i class='fas fa-check-circle'></i>
+            @endisset
+            </span></button>
         <!-- moderator / admin end -->
         @elseif(Auth::user()->type =='user' && Auth::user()->username == $post['username'])
         <!-- postmaker -->

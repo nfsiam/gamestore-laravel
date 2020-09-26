@@ -45,11 +45,13 @@ Route::middleware(['auth'])->group(function(){
 
         Route::post('/forum/post-del-req', 'Forum\Post\DeletePostReqController@postdelreq')->name('postdelreq');
 
-        Route::post('/forum/report-post', 'Forum\Post\ReportPostController@reportpost')->name('reportpost');
+        Route::post('/forum/report-post', 'Forum\Post\ReportPostController@reportpost')->name('reportpost')->middleware('mute');
 
-        Route::post('/forum/react-post', 'Forum\Post\ReactPostController@reactpost')->name('reactpost');
+        Route::post('/forum/react-post', 'Forum\Post\ReactPostController@reactpost')->name('reactpost')->middleware('mute');
 
-        Route::post('/forum/create-comment', 'Forum\Comment\CreateCommentController@store')->name('createcomment');
+        Route::post('/forum/create-comment', 'Forum\Comment\CreateCommentController@store')->name('createcomment')->middleware('mute');
+
+        Route::post('/forum/browsebygame', 'Forum\ForumController@browsebygame')->name('browsebygame');
 
 
         Route::group(['middleware'=>['mod']], function(){
@@ -78,6 +80,10 @@ Route::middleware(['auth'])->group(function(){
 
             Route::get('/forum/dashboard/report', 'Forum\ReportController@index');
             Route::get('/forum/dashboard/report-csv', 'Forum\ReportController@csv');
+
+            Route::get('/forum/dashboard/all-users', 'Forum\Dashboard\UserController@index')->name('dashboard.allusers');
+
+            Route::post('/forum/dashboard/muteunmute-user', 'Forum\Dashboard\UserController@muteunmute')->name('dashboard.muteunmute');
 
         });
     });

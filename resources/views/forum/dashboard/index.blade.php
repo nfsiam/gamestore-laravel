@@ -78,7 +78,34 @@
                         </div>
                     </div>
                     <!-- post delete request end -->
-                    <div class="col-md-3 mb-4">
+                    <!--  post delete request -->
+                    <div class="col-md-6 mb-4 ">
+                        <div class="card border-left-secondary shadow h-100 py-2 action-card"
+                            data-url="{{route('forum.dashboard.allusers')}}">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            All Users
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$usercount}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- post delete request end -->
+                </div>
+            </div>
+            
+        </div>
+        <!-- action buttons end -->
+
+        <div class="row mb-3">
+        <div class="col-md-6 mb-4">
                                 <div class="card bg-danger text-white shadow action-card"
                                     data-url="/forum/dashboard/report">
                                     <div class="card-body">
@@ -97,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-6 mb-4">
                                 <div class="card bg-success text-white shadow action-card"
                                     data-url="/forum/dashboard/report-csv">
                                     <div class="card-body">
@@ -116,11 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-                </div>
-            </div>
-            
         </div>
-        <!-- action buttons end -->
 
                 <!-- user section -->
                 <div class="row">

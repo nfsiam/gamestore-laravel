@@ -10,6 +10,7 @@ use App\User;
 use DB;
 use App\Postreact;
 use Auth;
+use Validator;
 
 
 class ForumController extends Controller
@@ -147,7 +148,16 @@ class ForumController extends Controller
 
     public function searchpost(Request $request)
     {
-       $result = Forumpost::where('status','approved')
+        $validator = Validator::make($request->all(), [
+            'searchText'=> 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return "soemthing went wrong";
+        }
+        
+        $result = Forumpost::where('status','approved')
                             ->where('title','like','%'.$request->searchText.'%')
                             ->orderBy('id','DESC')
                             ->get();
@@ -155,5 +165,39 @@ class ForumController extends Controller
         $posts = $this->formatPosts($result);
 
         return view('forum.includes.postthumbs')->with('posts',$posts);
+    }
+
+    public function browsebygame(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'gamename'=> 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(array(
+                'errors' => 'validation error'
+            ));
+        }
+        else
+        {
+            $result = Forumpost::where('status','approved')
+                                ->where('gamename',$request->gamename)
+                                ->orderBy('id','DESC')
+                                ->get();
+        }
+
+        $data = [];
+
+        $data['posts'] = $this->formatPosts($result);
+
+        $data['bkey'] = $request->gamename;
+        
+        $data['gamelist'] = DB::select( DB::raw("select DISTINCT gamename from forumposts where status <> :var"), array('var' => 'pending'));
+
+        $data['links'] = '';
+
+        return view('forum.browseby')->with($data);
+        
     }
 }

@@ -35,6 +35,7 @@
         <div class="row search-posts">
         </div>
 
+        <h3>Browsing Posts By {{$bkey}}</h3>
         <!-- posts start -->
         <div class="row posts">
             @include('forum.includes.postthumbs')
