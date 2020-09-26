@@ -53,6 +53,11 @@ class PostDeleteController extends Controller
             Postreact::where('postid',$request->postid)->delete();
 
             Postdelreq::where('postid',$request->postid)->delete();
+
+            if($request->ajax())
+            {
+                return response()->json(['status' => 'successful']);
+            }
             
             return redirect()->route($request->route);
         }

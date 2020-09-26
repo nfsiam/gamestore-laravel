@@ -114,7 +114,54 @@
 <!-- other users scripts end -->
 @elseif(Auth::user()->type =='moderator' || Auth::user()->type =='admin')
 <!-- mod scripts -->
+<script>
+    $(".mute-unmute").click(function () {
+        let that = $(this);
+        $.ajax({
+            url: '{{route("forum.dashboard.muteunmute")}}',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                username: $(this).data('username'),
+            },
+            success: function (data) {
+                if('error' in data){
+                    alert(data.error);
+                }
+                else if('muted' in data){
+                    if(data.muted == 'yes'){
+                        that.find('span').html("<i class='fas fa-check-circle'></i>");
+                    }else{
+                        that.find('span').html("");
+                    }
+                }
+            },
+        });
+    });
 
+    $("#delete").click(function () {
+        let that = $(this);
+        $.ajax({
+            url: '/forum/dashboard/delete-post',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                postid: $(this).data('postid'),
+                route: 'ajaxroute'
+            },
+            success: function (data) {
+                if('errors' in data){
+                    alert("something went wrong");
+                }
+                else if('status' in data){
+                   window.location.href = '/forum';
+                }
+            },
+        });
+    });
+</script>
 <!-- mod scripts end -->
 @endif
 

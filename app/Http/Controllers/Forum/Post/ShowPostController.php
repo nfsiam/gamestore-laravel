@@ -62,6 +62,10 @@ class ShowPostController extends Controller
 
         $post['gamename'] = $res->gamename;
         
+        if(Muteduser::where('username',$res->username)->exists())
+        {
+            $post['postermuted'] = 'yes';
+        }
 
         return $post;
     }
@@ -122,7 +126,7 @@ class ShowPostController extends Controller
         }
 
         $data['muted'] = false;
-        
+
         if(Muteduser::where('username',$user->username)->exists())
         {
             $data['muted'] = true;
