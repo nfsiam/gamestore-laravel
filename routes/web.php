@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function(){
 
         Route::post('/forum/create-comment', 'Forum\Comment\CreateCommentController@store')->name('createcomment');
 
+        Route::post('/forum/browsebygame', 'Forum\ForumController@browsebygame')->name('browsebygame');
+
 
         Route::group(['middleware'=>['mod']], function(){
             Route::get('/forum/dashboard', 'Forum\Dashboard\DashboardController@index')->name('dashboard.index');
