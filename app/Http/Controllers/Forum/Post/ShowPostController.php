@@ -131,4 +131,139 @@ class ShowPostController extends Controller
 
         return view('forum.post.postpage')->with($data);
     }
+
+    public function formatPendingPost($res)
+    {
+        $post = [];
+        $post['username'] = $res->username; 
+        $user = User::where('username',$res->username)->first();
+        $post['name'] = $user->name;
+        $post['propic'] = $user->propic;
+
+        $post['title'] = $res->title;
+        $post['body'] = $res->body;
+        $post['viewcount'] = $res->viewcount;
+        $post['ptime'] = $res->ptime;
+        $post['id'] = $res->id;
+        $post['type'] = $res->posttype;
+        $post['comment'] = $res->comment;
+
+        if($res->fname != null)
+        {
+            $post['fname'] = $res->fname;
+        }
+        if($res->codes != null)
+        {
+            $post['codes'] = $res->codes;
+        }
+
+        if($res->posttype == 'issue')
+        {
+            $post['typebadge'] = 'warning';
+        }
+        else if($res->posttype == 'review')
+        {
+            $post['typebadge'] = 'info';
+        }
+        else if($res->posttype == 'walkthrough')
+        {
+            $post['typebadge'] = 'success';
+        }
+        
+        $post['reacts'] = 0;
+
+        $post['gamename'] = $res->gamename;
+        
+
+        return $post;
+    }
+
+    public function showpending($id)
+    {
+        $result = Forumpost::where('id',$id)
+                            ->where('status','pending')
+                            ->where('dtime',null)
+                            ->first();
+
+        $post = $this->formatPendingPost($result);
+
+        $user = Auth::user();
+
+        $data = [];
+
+        $data['post'] = $post;
+
+
+        return view('forum.post.pendingpostpage')->with($data);
+    }
+
+    public function formatReportedPost($res)
+    {
+        $post = [];
+        $post['username'] = $res->username; 
+        $user = User::where('username',$res->username)->first();
+        $post['name'] = $user->name;
+        $post['propic'] = $user->propic;
+
+        $post['title'] = $res->title;
+        $post['body'] = $res->body;
+        $post['viewcount'] = $res->viewcount;
+        $post['ptime'] = $res->ptime;
+        $post['id'] = $res->id;
+        $post['type'] = $res->posttype;
+        $post['comment'] = $res->comment;
+
+        if($res->fname != null)
+        {
+            $post['fname'] = $res->fname;
+        }
+        if($res->codes != null)
+        {
+            $post['codes'] = $res->codes;
+        }
+
+        if($res->posttype == 'issue')
+        {
+            $post['typebadge'] = 'warning';
+        }
+        else if($res->posttype == 'review')
+        {
+            $post['typebadge'] = 'info';
+        }
+        else if($res->posttype == 'walkthrough')
+        {
+            $post['typebadge'] = 'success';
+        }
+        
+        $post['reacts'] = 0;
+
+        $post['gamename'] = $res->gamename;
+        
+        return $post;
+    }
+
+    public function showreported($id)
+    {
+        $report = Postreport::find($id);
+
+        if($report)
+        {
+            $result = Forumpost::where('id',$report->postid)
+                                ->where('dtime',null)
+                                ->first();
+
+            $post = $this->formatReportedPost($result);
+    
+            $user = Auth::user();
+    
+            $data = [];
+    
+            $data['post'] = $post;
+    
+            $data['reporttype'] = $report->reporttype;
+    
+            return view('forum.post.reportedpostpage')->with($data);
+        }
+
+    }
 }

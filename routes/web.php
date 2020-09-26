@@ -53,8 +53,18 @@ Route::middleware(['auth'])->group(function(){
 
 
         Route::group(['middleware'=>['mod']], function(){
-            Route::get('/forum/dashboard', 'Forum\ForumDashboardController@index')->name('dashboard.index');
-            Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\PostController@showpending')->name('dashboard.showpending');
+            Route::get('/forum/dashboard', 'Forum\Dashboard\DashboardController@index')->name('dashboard.index');
+            Route::get('/forum/dashboard/pending-posts', 'Forum\Dashboard\PostApprovalController@index')->name('dashboard.pendingposts');
+            
+            // Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\PostController@showpending')->name('dashboard.showpending');
+            Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\Post\ShowPostController@showpending')->name('dashboard.showpending');
+            
+            Route::post('/forum/dashboard/approve-post/{id}', 'Forum\Dashboard\PostApprovalController@approve')->name('dashboard.approvepost');
+            Route::post('/forum/dashboard/decline-post/{id}', 'Forum\Dashboard\PostApprovalController@decline')->name('dashboard.declinepost');
+            
+            Route::get('/forum/dashboard/reported-posts', 'Forum\Dashboard\PostReportController@index')->name('dashboard.reportedposts');
+
+            Route::get('/forum/dashboard/reported-posts/{id}', 'Forum\Post\ShowPostController@showreported')->name('dashboard.showreported');
         });
     });
 

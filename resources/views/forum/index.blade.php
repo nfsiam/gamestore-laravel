@@ -9,9 +9,9 @@
 <div class="row mb-5">
     <div class="col-md-2 mb-2 mb-md-0 ">
         @if(Auth::user()->type == 'moderator')
-        <a href="/forum/moderate" class="btn btn-primary btn-block">Moderate</a>
+        <a href="{{route('forum.dashboard.index')}}" class="btn btn-primary btn-block">Moderate</a>
         @else
-        <a href="/forum/create" class="btn btn-primary btn-block">Create</a>
+        <a href="{{route('forum.createpost')}}" class="btn btn-primary btn-block">Create</a>
         @endif
 
 
