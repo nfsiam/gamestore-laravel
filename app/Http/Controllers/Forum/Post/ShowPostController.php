@@ -261,9 +261,73 @@ class ShowPostController extends Controller
             $data['post'] = $post;
     
             $data['reporttype'] = $report->reporttype;
+            $data['reportid'] = $report->id;
     
             return view('forum.post.reportedpostpage')->with($data);
         }
+
+    }
+
+    public function formatDelReqPost($res)
+    {
+        $post = [];
+        $post['username'] = $res->username; 
+        $user = User::where('username',$res->username)->first();
+        $post['name'] = $user->name;
+        $post['propic'] = $user->propic;
+
+        $post['title'] = $res->title;
+        $post['body'] = $res->body;
+        $post['viewcount'] = $res->viewcount;
+        $post['ptime'] = $res->ptime;
+        $post['id'] = $res->id;
+        $post['type'] = $res->posttype;
+        $post['comment'] = $res->comment;
+
+        if($res->fname != null)
+        {
+            $post['fname'] = $res->fname;
+        }
+        if($res->codes != null)
+        {
+            $post['codes'] = $res->codes;
+        }
+
+        if($res->posttype == 'issue')
+        {
+            $post['typebadge'] = 'warning';
+        }
+        else if($res->posttype == 'review')
+        {
+            $post['typebadge'] = 'info';
+        }
+        else if($res->posttype == 'walkthrough')
+        {
+            $post['typebadge'] = 'success';
+        }
+        
+        $post['reacts'] = 0;
+
+        $post['gamename'] = $res->gamename;
+        
+        return $post;
+    }
+
+    public function showdelreqpost($id)
+    {
+        $result = Forumpost::where('id',$id)
+                            ->where('dtime',null)
+                            ->first();
+
+        $post = $this->formatDelReqPost($result);
+
+        $user = Auth::user();
+
+        $data = [];
+
+        $data['post'] = $post;
+
+        return view('forum.post.deletereqpostpage')->with($data);
 
     }
 }

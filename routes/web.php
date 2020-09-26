@@ -65,6 +65,17 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/forum/dashboard/reported-posts', 'Forum\Dashboard\PostReportController@index')->name('dashboard.reportedposts');
 
             Route::get('/forum/dashboard/reported-posts/{id}', 'Forum\Post\ShowPostController@showreported')->name('dashboard.showreported');
+
+            Route::post('/forum/dashboard/dismiss-post-report', 'Forum\Dashboard\PostReportController@dismiss')->name('dashboard.dismissreport');
+
+            Route::get('/forum/dashboard/post-delete-reqs', 'Forum\Dashboard\PostDeleteController@index')->name('dashboard.postdeletereqs');
+
+            Route::post('/forum/dashboard/delete-post', 'Forum\Dashboard\PostDeleteController@delete')->name('dashboard.deletepost');
+
+            Route::post('/forum/dashboard/dismiss-post-delreq', 'Forum\Dashboard\PostDeleteController@dismiss')->name('dashboard.dismisspostdelreq');
+
+            Route::get('/forum/dashboard/post-delete-reqs/{id}', 'Forum\Post\ShowPostController@showdelreqpost')->name('dashboard.showdelreqpost');
+
         });
     });
 

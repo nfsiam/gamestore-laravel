@@ -42,19 +42,18 @@ class PostReportController extends Controller
     public function dismiss(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'postid'=> 'required|integer',
+            'reportid'=> 'required|integer',
         ]);
 
         if($validator->fails())
         {
-            return redirect()->route('forum.dashboard.pendingposts');
+            return redirect()->route('forum.dashboard.reportedposts');
         }
         else
         {
-            if(Forumpost::destroy($request->postid))
-            {
-                return redirect()->route('forum.dashboard.pendingposts');
-            }
+            Postreport::where('id',$request->reportid)
+            ->delete();
+            return redirect()->route('forum.dashboard.reportedposts');
 
         }
         

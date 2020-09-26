@@ -14,18 +14,17 @@
 @section('modactions')
 <div class="row mb-5">
 <div class="col-md-12">
-    <h4>Report Type: {{$reporttype}}</h4>
-    <br>
+
     <form action="/forum/dashboard/delete-post" method="post">
     @csrf
     <input type="hidden" name="postid" value="{{$post['id']}}">
-    <input type="hidden" name="route" value="forum.dashboard.reportedposts">
+    <input type="hidden" name="route" value="forum.dashboard.postdeletereqs">
     <button type="submit" class="btn btn-block btn-success">Delete</button>
     </form>
 
-    <form action="/forum/dashboard/dismiss-post-report" method="post">
+    <form action="/forum/dashboard/dismiss-post-delreq" method="post">
     @csrf
-    <input type="hidden" name="reportid" value="{{$reportid}}">
+    <input type="hidden" name="postid" value="{{$post['id']}}">
     <button type="submit" class="btn btn-block btn-danger">Dismiss</button>
     </form>
 </div>
