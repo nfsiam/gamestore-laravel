@@ -76,6 +76,9 @@ Route::middleware(['auth'])->group(function(){
 
             Route::get('/forum/dashboard/post-delete-reqs/{id}', 'Forum\Post\ShowPostController@showdelreqpost')->name('dashboard.showdelreqpost');
 
+            Route::get('/forum/dashboard/report', 'Forum\ReportController@index');
+            Route::get('/forum/dashboard/report-csv', 'Forum\ReportController@csv');
+
         });
     });
 

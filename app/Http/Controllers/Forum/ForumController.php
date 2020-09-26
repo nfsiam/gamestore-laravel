@@ -68,11 +68,11 @@ class ForumController extends Controller
     {
        $result = Forumpost::where('status','approved')
                             ->orderBy('id','DESC')
-                            ->simplePaginate(10);
+                            ->simplePaginate(5);
 
         $posts = $this->formatPosts($result);
 
-        $gamelist = DB::select( DB::raw("select DISTINCT gamename, COUNT('gamename') c from forumposts where status <> :var"), array('var' => 'pending'));
+        $gamelist = DB::select( DB::raw("select DISTINCT gamename from forumposts where status <> :var"), array('var' => 'pending'));
 
         return view('forum.index')->with('posts',$posts)
                                     ->with('links',$result->links())

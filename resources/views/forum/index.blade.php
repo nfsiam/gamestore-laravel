@@ -51,11 +51,8 @@
                 <ul class="list-inline mb-0">
                     @foreach($gamelist as $game)
                     <li class="list-inline-item">
-                        <a href="#" class="btn gc btn-sm btn-icon-split">
-                            <span class="icon">
-                                {{$game->c}}
-                            </span>
-                            <span class="text">{{$game->gamename}}</span>
+                        <a href="#" class="btn gc btn-sm">
+                        {{$game->gamename}}
                         </a>
                     </li>
                     @endforeach
@@ -64,6 +61,9 @@
         </div>
     </div>
 </div>
+
+<br>
+<br>
 
 
 @endsection

@@ -34,6 +34,13 @@ class DashboardController extends Controller
                             ->orWhere('type','publisher')
                             ->count();
 
+        $data['issuecount'] = Forumpost::where('posttype','issue')
+                            ->count();
+        $data['reviewcount'] = Forumpost::where('posttype','review')
+                            ->count();
+        $data['walkthroughcount'] = Forumpost::where('posttype','walkthrough')
+                            ->count();
+
         $data['pendingcount'] = $pendingcount;
         $data['postreportcount'] = $postreportcount;
         $data['postdelreqcount'] = $postdelreqcount;
