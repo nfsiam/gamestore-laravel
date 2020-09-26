@@ -49,6 +49,16 @@ class LoginController extends Controller
         if (auth()->user()->type == 'moderator') {
             return redirect()->route('forumdashboard.index');
         }
-        return redirect('/home');
+        else if (auth()->user()->type == 'admin') {
+            $request->session()->put('username',auth()->user()->username);
+            return redirect('/admin');
+        }
+        else if (auth()->user()->type == 'superadmin') {
+            return redirect('/sadmin');
+        }
+        else{
+
+            return redirect('/home');
+        }
     }
 }
