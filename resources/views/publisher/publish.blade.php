@@ -44,7 +44,7 @@
                             <table class="table">
                                 <tr>
                                     <th>Game Title</th>
-                                    <td><input type="text" class="form-control" name="title"  value="Contra"></td>
+                                    <td><input type="text" class="form-control" name="title"  value=""></td>
                                     <td>
                                       @error('title')
                                         {{ $message }}
@@ -53,7 +53,7 @@
                                 </tr>
                                 <tr>
                                     <th>Price $</th>
-                                    <td><input type="text" class="form-control" name="price" id="" value="30"></td>
+                                    <td><input type="text" class="form-control" name="price" id="" value=""></td>
                                     <td>
                                       @error('price')
                                         {{ $message }}
@@ -61,8 +61,6 @@
                                     </td>
                                 </tr>
                                 
-                               
-                               
                                 <tr>
                                     <th>Game Picture</th>
                                     <td>

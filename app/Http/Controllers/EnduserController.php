@@ -196,7 +196,5 @@ class EnduserController extends Controller
         Auth::logout();
         return redirect('/login');
     }
-    
 
-    
 }

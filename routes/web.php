@@ -32,6 +32,8 @@ Route::get('/enduser/plans','EnduserController@enduserPlans')->name('endPlans');
 Route::get('/enduser/games/rate/{id}','EnduserController@enduserRate');
 Route::post('/enduser/games/rate/{id}','EnduserController@enduserRatePost');
 
+
+
 Route::get('/enduser/games/gift/{id}','EnduserController@enduserGift');
 Route::post('/enduser/games/gift/{id}','EnduserController@enduserGiftPost');
 Route::get('/enduser/logout','EnduserController@enduserLogout');

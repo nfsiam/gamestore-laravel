@@ -141,10 +141,12 @@ class AjaxController extends Controller
                     ->join('games','cartitems.gameid','games.id')
                     ->where('cartitems.purchaserusername',Auth::user()->username)
                     ->get();
-        $transaction = new Transactions();
-        $libraryentries = new Libraryentries();
+        
+        
         foreach($games as $game)
         {
+            $transaction = new Transactions();
+            $libraryentries = new Libraryentries();
             $transaction->gameid=$game->id;
             $transaction->username=Auth::user()->username;
             $transaction->purchaseprice=$game->price;
