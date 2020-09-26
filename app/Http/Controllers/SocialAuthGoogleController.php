@@ -40,7 +40,7 @@ class SocialAuthGoogleController extends Controller
                 $user->save();
                 Auth::loginUsingId($user->id,true);
             }
-            return redirect('/home');
+            return redirect('/forum');
         }
         catch(Exception $e){
             return $e;

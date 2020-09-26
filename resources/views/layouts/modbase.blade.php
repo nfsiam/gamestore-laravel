@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="@yield('container')">
         <!-- nav start-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <a class="navbar-brand" href="#">Game Store</a>
@@ -30,14 +30,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Store</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/forum">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat">Chat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat/gossiproom">Gossiproom</a>
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="/forum" data-toggle="dropdown">Forum</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- user -->
+                            <a href="/forum/issues" class="dropdown-item">Issues</a>
+                            <a href="/forum/reviews" class="dropdown-item">Reviews</a>
+                            <a href="/forum/walkthroughs" class="dropdown-item">Walkthroughs</a>
+                            <a href="/chat" class="dropdown-item">Chat</a>
+                            <a href="/chat/gossiproom" class="dropdown-item">Gossip Room</a>
+                            <!-- user -->
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

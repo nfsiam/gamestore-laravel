@@ -48,6 +48,8 @@ class LoginController extends Controller
     {
         if (auth()->user()->type == 'moderator') {
             return redirect()->route('forum.dashboard.index');
+        }else{
+            return redirect()->route('forum.index');
         }
         return redirect('/home');
     }

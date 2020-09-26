@@ -9,9 +9,9 @@
 <div class="row mb-5">
     <div class="col-md-2 mb-2 mb-md-0 ">
         @if(Auth::user()->type == 'moderator')
-        <a href="/forum/moderate" class="btn btn-primary btn-block">Moderate</a>
+        <a href="{{route('forum.dashboard.index')}}" class="btn btn-primary btn-block">Moderate</a>
         @else
-        <a href="/forum/create" class="btn btn-primary btn-block">Create</a>
+        <a href="{{route('forum.createpost')}}" class="btn btn-primary btn-block">Create</a>
         @endif
 
 
@@ -51,11 +51,8 @@
                 <ul class="list-inline mb-0">
                     @foreach($gamelist as $game)
                     <li class="list-inline-item">
-                        <a href="#" class="btn gc btn-sm btn-icon-split">
-                            <span class="icon">
-                                {{$game->c}}
-                            </span>
-                            <span class="text">{{$game->gamename}}</span>
+                        <a href="#" class="btn gc btn-sm">
+                        {{$game->gamename}}
                         </a>
                     </li>
                     @endforeach
@@ -64,6 +61,9 @@
         </div>
     </div>
 </div>
+
+<br>
+<br>
 
 
 @endsection

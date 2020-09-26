@@ -29,9 +29,10 @@
                 <label for="selectGame">Select Game</label>
                 <select class="custom-select cvalid" id="gamename" name="gamename">
                     <option value=""></option>
-                    <option value="gameID1">Game 1</option>
-                    <option value="gameID3">Game 3</option>
-                    <option value="gameID4">Game 4</option>
+                    <option value="Need For Speed">Need For Speed</option>
+                    <option value="Contra">Contra</option>
+                    <option value="GTA V">GTA V</option>
+                    <option value="Far Cry">Far Cry</option>
                 </select>
                 <small class="err" id="errgamename"></small>
             </div>
