@@ -26,7 +26,7 @@
         <a href="report.html" class="list-group-item list-group-item-action bg-light">Report</a>
         <a href="store.html" class="list-group-item list-group-item-action bg-light">Store</a>
         <a href="library.html" class="list-group-item list-group-item-action bg-light">Library</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Communnity</a>
+        <a href="{{route('forum.index')}}" class="list-group-item list-group-item-action bg-light">Forum</a>
         <a href="myprofile.html" class="list-group-item list-group-item-action bg-light">My Profile</a>
         <a href="publish.html" class="list-group-item list-group-item-action bg-light">Publish Game</a>
         <a href="logout.html" class="list-group-item list-group-item-action bg-light">Logout</a>

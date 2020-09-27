@@ -168,7 +168,7 @@ class adminController extends Controller
         return view("admin.adminallusers")->with('user',$user); */
 
         $client = new Client();
-            $response = $client->request('GET', 'http://localhost:3000/home/1', [
+            $response = $client->request('GET', 'http://localhost:3000/user/1', [
                 'content-type' => 'application/json',
                 'form_params' => [
                     'username' => Auth::user()->username,

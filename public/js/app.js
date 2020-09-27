@@ -81399,8 +81399,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\atp\laravel\final pro\gamestore-laravel\gamestore\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\atp\laravel\final pro\gamestore-laravel\gamestore\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\atp\laravel\final pro\mf\gamestore-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\atp\laravel\final pro\mf\gamestore-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

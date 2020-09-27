@@ -1,12 +1,12 @@
 var http = require('http');
-var express 	= require('express');
+var express = require('express');
 var app = express();
 var home = require('./controller/home')
 var server = http.createServer(app);
 
-app.get('/', function(req, res){
-	res.redirect("/home");
-});
+// app.get('/', function(req, res){
+// 	res.redirect("/home");
+// });
 
 
 app.use('/home', home);

@@ -26,7 +26,7 @@
         <a href="/enduser/home" class="list-group-item list-group-item-action bg-light">Home</a>
         <a href="/enduser/store" class="list-group-item list-group-item-action bg-light">Store</a>
         <a href="/enduser/library" class="list-group-item list-group-item-action bg-light">Library</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Communnity</a>
+        <a href="{{route('forum.index')}}" class="list-group-item list-group-item-action bg-light">Forum</a>
         <a href="/enduser/connect" class="list-group-item list-group-item-action bg-light">Find Friends</a>
         <a href="/enduser/myprofile" class="list-group-item list-group-item-action bg-light">My Profile</a>
         <a href="/enduser/plans" class="list-group-item list-group-item-action bg-light">Plans</a>

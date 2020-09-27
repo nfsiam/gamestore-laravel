@@ -23,7 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::middleware(['auth'])->group(function(){
 
     //manan
@@ -151,7 +150,6 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/forum/dashboard', 'Forum\Dashboard\DashboardController@index')->name('dashboard.index');
             Route::get('/forum/dashboard/pending-posts', 'Forum\Dashboard\PostApprovalController@index')->name('dashboard.pendingposts');
             
-            // Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\PostController@showpending')->name('dashboard.showpending');
             Route::get('/forum/dashboard/pending-posts/{id}', 'Forum\Post\ShowPostController@showpending')->name('dashboard.showpending');
             
             Route::post('/forum/dashboard/approve-post/{id}', 'Forum\Dashboard\PostApprovalController@approve')->name('dashboard.approvepost');

@@ -30,19 +30,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Store</a>
                     </li>
-<<<<<<< HEAD
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="/forum" data-toggle="dropdown">Forum</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <!-- user -->
-                            <a href="/forum/issues" class="dropdown-item">Issues</a>
-                            <a href="/forum/reviews" class="dropdown-item">Reviews</a>
-                            <a href="/forum/walkthroughs" class="dropdown-item">Walkthroughs</a>
-                            <a href="/chat" class="dropdown-item">Chat</a>
-                            <a href="/chat/gossiproom" class="dropdown-item">Gossip Room</a>
-                            <!-- user -->
-                        </div>
-=======
                     <li class="nav-item">
                         <a class="nav-link" href="/forum">Forum</a>
                     </li>
@@ -51,7 +38,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/chat/gossiproom">Gossiproom</a>
->>>>>>> f6bee69a229c3786d076cac56a65f58a92eaac58
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -74,8 +60,6 @@
     </div>
 
     @yield('scripts')
-<<<<<<< HEAD
-=======
 
     <script>
         function convertTimes(){
@@ -88,7 +72,6 @@
             convertTimes();
         });
     </script>
->>>>>>> f6bee69a229c3786d076cac56a65f58a92eaac58
     
 </body>
 
