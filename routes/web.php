@@ -82,8 +82,3 @@ Route::post('/sadmin/permissiongamedelete','super\superadminController@permissio
 
 Route::get('/sadmin/permissionrecharge','super\superadminController@permissionrecharge');
 Route::post('/sadmin/permissionrecharge','super\superadminController@permissionrechargePost');
-
-
-
-//api
-Route::get('/api','api@index');
