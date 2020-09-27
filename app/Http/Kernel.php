@@ -63,8 +63,8 @@ class Kernel extends HttpKernel
         'mod'=>	\App\Http\Middleware\ModAccess::class,
         'permissionrating' => \App\Http\Middleware\permissionrating::class,
         'permissiongamechange' => \App\Http\Middleware\permissiongamechange::class,
-        'permissionrecharge' => \App\Http\Middleware\permissionrecharge::class
-        
+        'permissionrecharge' => \App\Http\Middleware\permissionrecharge::class,
+        'mute'=> \App\Http\Middleware\VerifyMute::class,
     ];
 
     /**

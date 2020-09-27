@@ -5,16 +5,79 @@ namespace App\Http\Controllers\Forum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Forumpost;
+use App\User;
+use DB;
+use App\Postreact;
+use Auth;
+use Validator;
+
+
 class ForumController extends Controller
 {
+    public function formatPosts($result)
+    {
+        $posts = [];
+        foreach($result as $k=>$res)
+        {
+            $posts[$k]['username'] = $res->username; 
+            $user = User::where('username',$res->username)->first();
+            $posts[$k]['name'] = $user->name;
+            $posts[$k]['propic'] = $user->propic;
+
+            $posts[$k]['title'] = $res->title;
+            $posts[$k]['viewcount'] = $res->viewcount;
+            $posts[$k]['ptime'] = $res->ptime;
+            $posts[$k]['id'] = $res->id;
+            $posts[$k]['type'] = $res->posttype;
+
+            if($res->posttype == 'issue')
+            {
+                $posts[$k]['typebadge'] = 'warning';
+            }
+            else if($res->posttype == 'review')
+            {
+                $posts[$k]['typebadge'] = 'info';
+            }
+            else if($res->posttype == 'walkthrough')
+            {
+                $posts[$k]['typebadge'] = 'success';
+            }
+            
+            $posts[$k]['reacts'] = Postreact::where('postid',$res->id)
+                            ->count();
+
+            $myreact = Postreact::where('postid',$res->id)
+                                ->where('username',Auth::user()->username)
+                                ->exists();
+            if($myreact)
+            {
+                $posts[$k]['myreact'] = true;
+            }
+
+            $posts[$k]['gamename'] = $res->gamename;
+        }
+
+        return $posts;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return "welcome to forum";
+       $result = Forumpost::where('status','approved')
+                            ->orderBy('id','DESC')
+                            ->simplePaginate(5);
+
+        $posts = $this->formatPosts($result);
+
+        $gamelist = DB::select( DB::raw("select DISTINCT gamename from forumposts where status <> :var"), array('var' => 'pending'));
+
+        return view('forum.index')->with('posts',$posts)
+                                    ->with('links',$result->links())
+                                    ->with('gamelist',$gamelist);
     }
 
     /**
@@ -81,5 +144,60 @@ class ForumController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function searchpost(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'searchText'=> 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return "soemthing went wrong";
+        }
+        
+        $result = Forumpost::where('status','approved')
+                            ->where('title','like','%'.$request->searchText.'%')
+                            ->orderBy('id','DESC')
+                            ->get();
+
+        $posts = $this->formatPosts($result);
+
+        return view('forum.includes.postthumbs')->with('posts',$posts);
+    }
+
+    public function browsebygame(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'gamename'=> 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json(array(
+                'errors' => 'validation error'
+            ));
+        }
+        else
+        {
+            $result = Forumpost::where('status','approved')
+                                ->where('gamename',$request->gamename)
+                                ->orderBy('id','DESC')
+                                ->get();
+        }
+
+        $data = [];
+
+        $data['posts'] = $this->formatPosts($result);
+
+        $data['bkey'] = $request->gamename;
+        
+        $data['gamelist'] = DB::select( DB::raw("select DISTINCT gamename from forumposts where status <> :var"), array('var' => 'pending'));
+
+        $data['links'] = '';
+
+        return view('forum.browseby')->with($data);
+        
     }
 }

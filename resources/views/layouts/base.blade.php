@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sba.css') }}" rel="stylesheet">
     @yield('css')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js')}}"></script>
@@ -29,6 +30,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Store</a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item active">
                         <a class="nav-link dropdown-toggle" href="/forum" data-toggle="dropdown">Forum</a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -40,6 +42,16 @@
                             <a href="/chat/gossiproom" class="dropdown-item">Gossip Room</a>
                             <!-- user -->
                         </div>
+=======
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chat">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chat/gossiproom">Gossiproom</a>
+>>>>>>> f6bee69a229c3786d076cac56a65f58a92eaac58
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -62,6 +74,21 @@
     </div>
 
     @yield('scripts')
+<<<<<<< HEAD
+=======
+
+    <script>
+        function convertTimes(){
+            $('.tstamp').each(function(){
+                $(this).html(moment.unix(parseInt($(this).html())).format('hh:mm:ss a'));
+                $(this).removeClass('tstamp');
+            });
+        }
+        $(document).ready(function(){
+            convertTimes();
+        });
+    </script>
+>>>>>>> f6bee69a229c3786d076cac56a65f58a92eaac58
     
 </body>
 
