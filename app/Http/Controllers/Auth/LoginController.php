@@ -48,9 +48,32 @@ class LoginController extends Controller
     {
         if (auth()->user()->type == 'moderator') {
             return redirect()->route('forum.dashboard.index');
-        }else{
+        }/* else{
             return redirect()->route('forum.index');
         }
-        return redirect('/home');
+        */
+        else if(auth()->user()->type=='publisher')
+        {
+            return redirect()->route('pubReport');
+        }
+        else if (auth()->user()->type == 'admin') {
+            $request->session()->put('username',auth()->user()->username);
+            return redirect('/admin');
+        }
+        else if (auth()->user()->type == 'superadmin') {
+            return redirect('/sadmin');
+        }
+        else if(auth()->user()->type == 'user')
+        {
+            return redirect()->route('endHome');
+        }
+        else{
+
+            return redirect('/home');
+        }
+        
+       
+        return redirect('/');
+       
     }
 }
