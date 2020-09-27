@@ -60,6 +60,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'mod'=>	\App\Http\Middleware\ModAccess::class,
+        'permissionrating' => \App\Http\Middleware\permissionrating::class,
+        'permissiongamechange' => \App\Http\Middleware\permissiongamechange::class,
+        'permissionrecharge' => \App\Http\Middleware\permissionrecharge::class
+        
     ];
 
     /**
